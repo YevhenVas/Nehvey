@@ -6,16 +6,17 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class MainPage extends AbstractPage {
 
-    WebElement TileBox;
+    List<WebElement> TileBoxes;
     Select dropdownQuantity;
     WebElement title;
 
     public  MainPage(String URL) {
         driver.get(URL);
-        TileBox = driver.findElements(By.xpath("//*[contains(@id,'search-realt')]"));
+        TileBoxes = driver.findElements(By.xpath("//*[contains(@id,'search-realt')]"));
         dropdownQuantity = new Select(driver.findElement(By.id("countOnPage")));
         title=driver.findElement(By.cssSelector("#searchTitleCategory"));
 
@@ -34,7 +35,7 @@ public class MainPage extends AbstractPage {
 
     public int numberOfTiles() {
 
-        return TileBox;
+        return TileBoxes;
     }
 
 
