@@ -1,27 +1,42 @@
 package Yevhen.PageObjects;
 
-import Yevhen.Driver;
-import okhttp3.internal.connection.RouteSelector;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class MainPage extends AbstractPage {
-    public MainPage openPage(String URL) {
+
+    WebElement TileBox;
+    Select dropdownQuantity;
+    WebElement title;
+
+    public  MainPage(String URL) {
         driver.get(URL);
-        return this;
+        TileBox = driver.findElements(By.xpath("//*[contains(@id,'search-realt')]"));
+        dropdownQuantity = new Select(driver.findElement(By.id("countOnPage")));
+        title=driver.findElement(By.cssSelector("#searchTitleCategory"));
+
     }
+
     public boolean isMainPageLoaded (){
-       String title= (String) driver.findElement(By.id("searchTitleCategory")).getText();
-       return title.equals("Поиск недвижимости");
+        return title.getText().equals("Поиск недвижимости");
     }
     public MainPage setQuantityTiles (int numbers) {
-        Select dropdown = new Select(driver.findElement(By.className("el-selected open")));
-        dropdown.selectByValue(String.valueOf(numbers));
+                dropdownQuantity.selectByValue(String.valueOf(numbers));
         return this;
     }
-  }
+    public int expectedResult() {
+        return Integer.valueOf(dropdownQuantity.getFirstSelectedOption().getText());
+    }
+
+    public int numberOfTiles() {
+
+        return TileBox;
+    }
+
+
+}
 
