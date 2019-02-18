@@ -11,6 +11,7 @@ import org.testng.util.Strings;
 import org.xml.sax.Locator;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import static org.testng.Assert.assertTrue;
@@ -34,12 +35,28 @@ import static org.testng.Assert.assertTrue;
 
     @Test
     public void isMainPageLoaded (){
-        Assert.assertEquals("Поиск недвижимости", mainPage.isMainPageLoaded());
+        Assert.assertTrue(mainPage.isMainPageLoaded(),"Wrong page or main page should be loaded");
     }
 
     @Test
      public void comparingFilterResults() {
-        int expected = mainPage.expectedResult();
+        int expected = mainPage.expectedResultOfTiles();
+        int actual = mainPage.numberOfTiles();
+        Assert.assertEquals(expected, actual, "comparing actual quantity of tiles and search");
+     }
+
+     @Test
+     public void comparingChangedValues () throws InterruptedException {
+        List<String> titels= mainPage.getTileHeaders();
+        for(String title:titels){
+            Assert.assertTrue(!title.toLowerCase().contains("винница"), "message");
+        }
+         for(String title:titels){
+             Assert.assertTrue(!title.toLowerCase().contains("вишенка"), "message");
+         }
+        mainPage.setQuantityTiles(50);
+        Thread.sleep(5000);
+        int expected = mainPage.expectedResultOfTiles();
         int actual = mainPage.numberOfTiles();
         Assert.assertEquals(expected, actual, "comparing actual quantity of tiles and search");
      }
