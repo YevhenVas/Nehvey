@@ -14,43 +14,43 @@ import static Yevhen.Utils.scrollToBottom;
 
 public class MainPage extends AbstractPage {
 
-    List<WebElement> TileBoxes;
-    WebElement dropdownQuantity;
-    WebElement title;
+    By tileBoxesSelector=By.className("wrap_desc");
+    By dropdownQuantitySelector=By.cssSelector(".el-selected.open");
+    By titleSelector=By.cssSelector("#searchTitleCategory");
+    By additionalDataSelection=By.cssSelector(".twitter-typeahead");
+    By citySelector=By.cssSelector("[title='Винница']");
+    By regionSelector=By.className("[for='district_15109']");
+
 
     public  MainPage(String URL) {
         driver.get(URL);
-        TileBoxes = driver.findElements(By.xpath("//*[contains(@id,'search-realt')]"));
-        dropdownQuantity = driver.findElement(By.cssSelector(".el-selected.open"));
-        title=driver.findElement(By.cssSelector("#searchTitleCategory"));
-        //additionalDataClick = driver.findElement();
     }
 
     public boolean isMainPageLoaded (){
-        return title.getText().equals("Поиск недвижимости");
+        return driver.findElement(titleSelector).getText().equals("Поиск недвижимости");
     }
 
     public MainPage setQuantityTiles (int numbers) {
         scrollToBottom();
-        dropdownQuantity.click();
+        driver.findElement(dropdownQuantitySelector).click();
         WebElement listItem = driver.findElement(By.cssSelector("[data-value='" + numbers+ "']"));
         listItem.click();
-                        return this;
+         return this;
     }
     public int expectedResultOfTiles() {
 
-        String stringValues = dropdownQuantity.getText();
+        String stringValues = driver.findElement(dropdownQuantitySelector).getText();
         return Utils.substringInt(stringValues);
     }
 
     public int numberOfTiles() {
 
-        List<WebElement> arrayTiles = driver.findElements(By.className("wrap_desc"));
+        List<WebElement> arrayTiles = driver.findElements(tileBoxesSelector);
         return arrayTiles.size();
     }
 
     public List<WebElement> getTiles() {
-        return driver.findElements(By.className("wrap_desc"));
+        return driver.findElements(tileBoxesSelector);
     }
 
     public List<String> getTileHeaders() {
@@ -60,11 +60,13 @@ public class MainPage extends AbstractPage {
             forReturn.add(tile.findElement(By.className("blue")).getText());
         }
         return forReturn;
-    }/*
-    public MainPage setAdditioanlDataSelection (){
-        WebElement.
     }
-*/
-
+    public MainPage setAdditioanlDataSelection () throws InterruptedException {
+        driver.findElement(additionalDataSelection).click();
+        driver.findElement(citySelector).click();
+        //driver.findElement(regionSelector).click();
+        Thread.sleep(5000);
+        return this;
+    }
 }
 

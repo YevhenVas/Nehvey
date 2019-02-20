@@ -47,21 +47,22 @@ import static org.testng.Assert.assertTrue;
 
      @Test
      public void comparingChangedValues () throws InterruptedException {
-        List<String> titels= mainPage.getTileHeaders();
-        for(String title:titels){
-            Assert.assertTrue(!title.toLowerCase().contains("винница"), "message");
-        }
-         for(String title:titels){
-             Assert.assertTrue(!title.toLowerCase().contains("вишенка"), "message");
-         }
         mainPage.setQuantityTiles(50);
         Thread.sleep(5000);
         int expected = mainPage.expectedResultOfTiles();
         int actual = mainPage.numberOfTiles();
         Assert.assertEquals(expected, actual, "comparing actual quantity of tiles and search");
      }
+     @Test
+     public void comparingChangedDataSelection () throws InterruptedException {
 
-
-
+        List<String> titels= mainPage.setAdditioanlDataSelection().getTileHeaders();
+        for(String title:titels){
+            Assert.assertTrue(title.toLowerCase().contains("винница"), "винница not found in: "+title);
+        }
+         for(String title:titels){
+            Assert.assertTrue(title.toLowerCase().contains("вишенка"), "message");
+        }
+     }
 
 }
