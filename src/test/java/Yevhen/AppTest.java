@@ -55,13 +55,15 @@ import static org.testng.Assert.assertTrue;
      }
      @Test
      public void comparingChangedDataSelection () throws InterruptedException {
+        int quantityOfRooms = mainPage.getQuantityOfRooms();
+        Assert.assertEquals(quantityOfRooms);
 
         List<String> titels= mainPage.setAdditioanlDataSelection().getTileHeaders();
         for(String title:titels){
             Assert.assertTrue(title.toLowerCase().contains("винница"), "винница not found in: "+title);
         }
          for(String title:titels){
-            Assert.assertTrue(title.toLowerCase().contains("вишенка"), "message");
+            Assert.assertTrue(title.toLowerCase().contains("вишенка"), "вишенка not found in: "+title);
         }
      }
 
