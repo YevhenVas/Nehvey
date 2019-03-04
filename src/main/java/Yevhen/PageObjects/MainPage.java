@@ -23,6 +23,7 @@ public class MainPage extends AbstractPage {
     By citySelector = By.cssSelector("[title='Винница']");
     By regionSelector = By.id("pseudomodalRegion");
     By regionDefinder = By.xpath("//label[@for='district_15109']");
+    By realtySelecrtion = By.xpath("//label[@for='selectType'][1]");
     By apartmentSelection = By.id("catType_1_2_1");
     By roomsCount=By.xpath("//label[@for='rooms_count_3']");
     By squareFrom=By.id("characteristic_214_from");
@@ -82,6 +83,8 @@ public class MainPage extends AbstractPage {
         Thread.sleep(5000);
         driver.findElement(categorySelector).click();
         Thread.sleep(1000);
+        driver.findElement(realtySelecrtion).click();
+        Thread.sleep(1000);
         driver.findElement(apartmentSelection).click();
         Thread.sleep(1000);
         driver.findElement(roomsCount).click();
@@ -94,12 +97,13 @@ public class MainPage extends AbstractPage {
         return this;
     }
     public MainPage getSquareOfRooms ()throws InterruptedException {
-        driver.findElements(By.className("wrap_desc")).get(1).findElements(By.cssSelector(".mt-5.i-block.mr-15")).get(1).getText().split("/")[0];
+        String[] strings = driver.findElements(By.className("wrap_desc")).get(1).findElements(By.cssSelector(".mt-5.i-block.mr-15")).get(1).getText().split("/");
         return this;
     }
     public MainPage getQuantityOfRooms ()throws InterruptedException {
-       driver.findElements(By.className("wrap_desc")).get(1).findElements(By.cssSelector(".mt-5.i-block.mr-15"));
+        driver.findElements(By.className("wrap_desc")).get(1).findElements(By.cssSelector(".mt-5.i-block.mr-15"));
         return this;
     }
+
 }
 

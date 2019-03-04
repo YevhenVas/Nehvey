@@ -22,6 +22,7 @@
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -39,14 +40,26 @@
           <version>3.141.59</version>
       </dependency>
     <dependency>
-      <groupId>net.sourceforge.fuzzyservices</groupId>
-      <artifactId>fuzzyservices-beans</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.asynchttpclient</groupId>
       <artifactId>async-http-client</artifactId>
       <version>2.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <version>3.141.59</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-java-commons</artifactId>
+      <version>2.6.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
