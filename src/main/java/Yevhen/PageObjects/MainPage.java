@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Yevhen.Utils.scrollDownToElement;
+import static Yevhen.Utils.scrollDownToElement;ye;yj
 import static Yevhen.Utils.scrollToBottom;
 
 public class MainPage extends AbstractPage {

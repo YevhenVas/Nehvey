@@ -57,7 +57,7 @@ import static org.testng.Assert.assertTrue;
      public void comparingChangedDataSelection () throws InterruptedException {
 
         MainPage quantityOfRooms = mainPage.getQuantityOfRooms();
-        //Assert.assertEquals(quantityOfRooms);
+        Assert.assertEquals(quantityOfRooms);
 
         List<String> titels= mainPage.setAdditioanlDataSelection().getTileHeaders();
         for(String title:titels){
