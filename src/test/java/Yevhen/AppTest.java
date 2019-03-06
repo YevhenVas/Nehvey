@@ -38,6 +38,7 @@ import static org.testng.Assert.assertTrue;
         Assert.assertTrue(mainPage.isMainPageLoaded(),"Wrong page or main page should be loaded");
     }
 
+
     @Test
      public void comparingFilterResults() {
         int expected = mainPage.expectedResultOfTiles();
