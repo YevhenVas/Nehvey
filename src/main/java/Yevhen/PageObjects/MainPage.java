@@ -28,6 +28,8 @@ public class MainPage extends AbstractPage {
     By additionalDataSelection = By.cssSelector(".twitter-typeahead");
     By squareFrom=By.id("characteristic_214_from");
     By squareTo=By.id("characteristic_214_to");
+    By cityDefinder = By.xpath("//*[@id='autocompleteSearch']");
+    By regionComfirmation = By.xpath("//label[@class='button large _blue']");
     //By apartmentRooms = By.className("mt-5 i-block mr-15");
 
 
@@ -62,6 +64,9 @@ public class MainPage extends AbstractPage {
     public List<WebElement> getTiles() {
         return driver.findElements(tileBoxesSelector);
     }
+    public List<WebElement> getTilesRooms() {
+        return driver.findElements(roomsCount);
+    }
 
     public List<String> getTileHeaders() {
         List<String> forReturn = new ArrayList<>();
@@ -70,6 +75,14 @@ public class MainPage extends AbstractPage {
             forReturn.add(tile.findElement(By.className("blue")).getText());
         }
         return forReturn;
+    }
+    public List<String> getTileQuantityRooms() {
+        List<String> forRoomsReturn = new ArrayList<>();
+
+        for (WebElement tile : getTilesRooms()) {
+            forRoomsReturn.add(tile.findElement(By.className("blue")).getText());
+        }
+        return forRoomsReturn;
     }
 
     public MainPage setRealtyType() throws InterruptedException {
@@ -83,11 +96,13 @@ public class MainPage extends AbstractPage {
     }
 
      public MainPage setGeolocation() throws InterruptedException {
+            driver.findElement(cityDefinder).click();
             driver.findElement(citySelector).click();
             Thread.sleep(1000);
             driver.findElement(regionSelector).click();
             Thread.sleep(1000);
             driver.findElement(regionDefinder).click();
+            driver.findElement(regionComfirmation).click();
             Thread.sleep(5000);
             return this;
         }
