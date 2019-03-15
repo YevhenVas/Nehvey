@@ -1,0 +1,1 @@
+{"uuid":"31874adf-6193-438f-92fd-d9bef0b583e9","name":"Yevhen.AppTest.before","description":"","start":1551718104754,"stop":1551718105811,"children":["62e691a4-abb8-476c-b332-33e1c34e3679"],"befores":[{"name":"before","status":"passed","stage":"finished","description":"","start":1551718104754,"stop":1551718105811}]}

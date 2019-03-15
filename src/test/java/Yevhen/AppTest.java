@@ -56,21 +56,20 @@ import static org.testng.Assert.assertTrue;
      }
      @Test
      public void comparingChangedDataSelection () throws InterruptedException {
-
-        List<String> rooms= mainPage.getTileQuantityRooms();
-         String definedQuantityOfRooms =mainPage.setApartmantType();
-         String actualQuantityOfRooms = mainPage.getQuantityOfRooms();
-         //String getRooms = mainPage.getTileQuantityRooms();
-         for(actualQuantityOfRooms:rooms){
-             Assert.assertEquals(definedQuantityOfRooms, actualQuantityOfRooms,"comparing actual quantity of rooms and that were set up" );
-         }
-
         List<String> titles= mainPage.setRealtyType().setGeolocation().getTileHeaders();
-        for(String title:titles){
+         for(String title:titles){
             Assert.assertTrue(title.toLowerCase().contains("винница"), "винница not found in: "+title);
         }
          for(String title:titles){
             Assert.assertTrue(title.toLowerCase().contains("вишенка"), "вишенка not found in: "+title);
         }
-     }
+         String definedQuantityOfRooms =mainPage.setApartmantType();
+        List<String> rooms= mainPage.getTileQuantityRooms();
+         //String definedQuantityOfRooms =mainPage.setApartmantType();
+         //String getRooms = mainPage.getTileQuantityRooms();
+         for(String currentTile:rooms){
+             String actualQuantityOfRooms = currentTile;
+             Assert.assertEquals(definedQuantityOfRooms, actualQuantityOfRooms,"comparing actual quantity of rooms and that were set up" );
+         }
+    }
 }
